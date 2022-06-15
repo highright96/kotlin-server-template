@@ -1,27 +1,31 @@
 package com.example.blog
 
 import com.example.blog.application.user.service.CreateUserService
-import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Test
-import org.springframework.beans.factory.annotation.Autowired
+import io.kotest.core.spec.style.BehaviorSpec
+import io.kotest.extensions.spring.SpringExtension
+import io.kotest.matchers.shouldBe
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class UserIntegrationTest {
+class CreateUserIntegrationTest(srv: CreateUserService) : BehaviorSpec() {
 
-    @Autowired
-    private lateinit var createUserService: CreateUserService
+    override fun extensions() = listOf(SpringExtension)
 
-    @Test
-    fun `create user test`() {
-        val firstname = "Sangwoo"
-        val lastname = "Nam"
-        val description = "description"
+    init {
+        this.given("유저") {
+            val firstname = "이름"
+            val lastname = "성"
+            val description = "설명"
 
-        val actual = createUserService.create(firstname, lastname, description);
+            `when`("올바른 파라미터로 생성") {
+                val actual = srv.create(firstname = firstname, lastname = lastname, description = description)
 
-        assertThat(actual.firstname).isEqualTo(firstname)
-        assertThat(actual.lastname).isEqualTo(lastname)
-        assertThat(actual.description).isEqualTo(description)
+                then("성공") {
+                    actual.firstname shouldBe firstname
+                    actual.lastname shouldBe lastname
+                    actual.description shouldBe description
+                }
+            }
+        }
     }
 }
