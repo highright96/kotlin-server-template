@@ -9,16 +9,14 @@ class UpdateUserService(private val userRepo: UserRepository) {
 
     @Transactional
     fun update(userId: Long, firstname: String, lastname: String, description: String?) {
-
-        userRepo.findById(userId)
-
-        userRepo.findById(userId)
-            .ifPresent {
-            it.update(
-                firstname = firstname,
-                lastname = lastname,
-                description = description
-            )
+        val user = userRepo.findById(userId).orElseThrow {
+            throw IllegalArgumentException("해당 유저는 존재하지 않습니다.")
         }
+
+        user.update(
+            firstname = firstname,
+            lastname = lastname,
+            description = description
+        )
     }
 }
