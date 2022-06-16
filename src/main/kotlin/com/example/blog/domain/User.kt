@@ -12,4 +12,11 @@ class User(
     var firstname: String,
     var lastname: String,
     var description: String? = null
-)
+) {
+
+    fun update(firstname: String, lastname: String, description: String?) {
+        this.firstname = firstname
+        this.lastname = lastname
+        this.description = description
+    }
+}

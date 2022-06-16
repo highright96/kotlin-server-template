@@ -1,6 +1,6 @@
 package com.example.blog
 
-import com.example.blog.application.user.service.CreateUserService
+import com.example.blog.application.user.CreateUserService
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.extensions.spring.SpringExtension
 import io.kotest.matchers.shouldBe

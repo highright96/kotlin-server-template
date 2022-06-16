@@ -1,6 +1,6 @@
 package com.example.blog.presentation.user
 
-import com.example.blog.application.user.service.CreateUserService
+import com.example.blog.application.user.CreateUserService
 import com.example.blog.presentation.user.request.SignUpRequest
 import com.example.blog.presentation.user.response.UserResponse
 import org.springframework.web.bind.annotation.PostMapping

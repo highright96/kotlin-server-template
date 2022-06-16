@@ -1,4 +1,4 @@
-package com.example.blog.application.user.service
+package com.example.blog.application.user
 
 import com.example.blog.domain.User
 import com.example.blog.domain.repository.UserRepository
