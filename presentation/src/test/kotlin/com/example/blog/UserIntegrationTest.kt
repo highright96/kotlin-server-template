@@ -1,9 +1,8 @@
 package com.example.blog
 
-import com.example.blog.application.user.CreateUserService
-import com.example.blog.application.user.UpdateUserService
-import com.example.blog.domain.User
-import com.example.blog.domain.repository.UserRepository
+import com.example.blog.repository.UserRepository
+import com.example.blog.user.CreateUserService
+import com.example.blog.user.UpdateUserService
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.extensions.spring.SpringExtension

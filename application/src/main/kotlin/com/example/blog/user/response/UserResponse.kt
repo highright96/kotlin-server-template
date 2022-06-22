@@ -1,6 +1,6 @@
 package com.example.blog.user.response
 
-import com.example.blog.domain.User
+import com.example.blog.User
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.annotation.JsonSerialize
 

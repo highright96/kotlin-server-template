@@ -15,6 +15,9 @@ dependencies {
     testImplementation("io.kotest.extensions:kotest-extensions-spring:1.1.1")
     testImplementation("com.ninja-squad:springmockk:3.1.0")
 
+    //Database
+    runtimeOnly("com.h2database:h2")
+
     implementation(project(":application"))
     implementation(project(":infrastructure"))
 }
