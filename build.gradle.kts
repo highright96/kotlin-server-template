@@ -6,16 +6,52 @@ plugins {
     kotlin("jvm") version "1.6.21"
     kotlin("plugin.spring") version "1.6.21"
     kotlin("plugin.jpa") version "1.6.21"
+    kotlin("plugin.serialization") version "1.6.10" apply false
+    java
+    idea
 }
 
-group = "com.example"
-version = "0.0.1-SNAPSHOT"
-java.sourceCompatibility = JavaVersion.VERSION_11
+allprojects {
+    group = "com.example.blog"
+    version = "0.0.1-SNAPSHOT"
+
+    tasks.withType<KotlinCompile> {
+        kotlinOptions {
+            freeCompilerArgs = listOf("-Xjsr305=strict")
+            jvmTarget = "17"
+        }
+    }
+
+    tasks.withType<Test> {
+        useJUnitPlatform()
+    }
+
+    repositories {
+        mavenCentral()
+    }
+}
 
 repositories {
     mavenCentral()
 }
 
+subprojects {
+    apply {
+        plugin("kotlin")
+        plugin("org.jetbrains.kotlin.jvm")
+        plugin("org.springframework.boot")
+        plugin("io.spring.dependency-management")
+    }
+
+    dependencies {
+        implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+        implementation("org.jetbrains.kotlin:kotlin-reflect")
+        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+        implementation("io.arrow-kt:arrow-core:1.0.1")
+    }
+}
+
+/*
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-mustache")
@@ -35,14 +71,4 @@ dependencies {
     testImplementation("io.kotest.extensions:kotest-extensions-spring:1.1.1")
     testImplementation("com.ninja-squad:springmockk:3.1.0")
 }
-
-tasks.withType<KotlinCompile> {
-    kotlinOptions {
-        freeCompilerArgs = listOf("-Xjsr305=strict")
-        jvmTarget = "11"
-    }
-}
-
-tasks.withType<Test> {
-    useJUnitPlatform()
-}
+*/
